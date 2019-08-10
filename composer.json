@@ -1,0 +1,30 @@
+{
+    "name": "struggle-for-php/sfp-infection-mutator",
+    "description" : "Mutator for Infection",
+    "require": {
+        "php" : ">=7.2",
+        "infection/infection": "^0.13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sfp\\Infection\\Mutator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SfpTest\\Infection\\Mutator\\": "tests",
+            "Infection\\Tests\\": "infection/tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
+    },
+    "authors": [
+        {
+            "name" : "sasezaki",
+            "email" : "sasezaki@gmail.com",
+            "homepage" : "http://github.com/sasezaki",
+            "role" : "Developer"
+        }
+    ]
+}
