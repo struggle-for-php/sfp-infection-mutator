@@ -1,6 +1,13 @@
 {
     "name": "struggle-for-php/sfp-infection-mutator",
     "description" : "Mutator for Infection",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "infection",
+        "mutator",
+        "mutant",
+        "is_numeric"
+    ],
     "require": {
         "php" : ">=7.2",
         "infection/infection": "^0.13.4"
