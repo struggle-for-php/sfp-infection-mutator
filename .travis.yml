@@ -1,0 +1,32 @@
+sudo: false
+
+language: php
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.2
+      env:
+        - EXECUTE_COVERAGE=true
+        - EXECUTE_CS_CHECK=true
+    - php: 7.3
+    - php: 7.4snapshot
+
+before_install:
+  - if [[ $EXECUTE_COVERAGE != 'true' ]]; then phpenv config-rm xdebug.ini || return 0 ; fi
+
+before_script:
+  - composer self-update
+  - composer install --dev --prefer-source
+
+script:
+  - if [[ $EXECUTE_COVERAGE != 'true' ]]; then ./vendor/bin/phpunit ; fi
+  - if [[ $EXECUTE_CS_CHECK == 'true' ]]; then ./vendor/bin/phpcs --standard=phpcs.xml.dist src tests ; fi
+
+after_script:
+  - if [[ $EXECUTE_COVERAGE == 'true' ]]; then wget https://scrutinizer-ci.com/ocular.phar ; fi
+  - if [[ $EXECUTE_COVERAGE == 'true' ]]; then php ocular.phar code-coverage:upload --format=php-clover ./tests/coverage.clover ; fi
+
+cache:
+  directories:
+    - $HOME/.composer/cache
