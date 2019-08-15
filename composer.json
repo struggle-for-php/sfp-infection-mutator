@@ -20,7 +20,7 @@
         }
     },
     "require": {
-        "php" : ">=7.2",
+        "php" : ">=7.3",
         "infection/infection": "^0.13.4",
         "nikic/php-parser": "^4.2"
     },
