@@ -7,10 +7,11 @@ namespace Sfp\Infection\Mutator\Regex;
 use Infection\Mutator\Util\Mutator;
 use PhpParser\Node;
 
-/**
- * @internal
- */
-class PregMatchIsNumeric extends Mutator
+use function count;
+use function strrpos;
+use function substr;
+
+final class PregMatchIsNumeric extends Mutator
 {
     /**
      * Replaces "preg_match('/\A[0-9]+\z/', '-0.12');" with "is_numeric('-0.12');"
@@ -25,22 +26,23 @@ class PregMatchIsNumeric extends Mutator
         );
     }
 
-    protected function mutatesNode(Node $node): bool
+    protected function mutatesNode(Node $node) : bool
     {
-        if (!$node instanceof Node\Expr\FuncCall) {
+        if (! $node instanceof Node\Expr\FuncCall) {
             return false;
         }
 
-        if (!$node->name instanceof Node\Name ||
-            $node->name->toLowerString() !== 'preg_match') {
+        if (! $node->name instanceof Node\Name
+            || $node->name->toLowerString() !== 'preg_match'
+        ) {
             return false;
         }
 
-        if (count($node->args) > 2 ) {
+        if (count($node->args) > 2) {
             return false;
         }
 
-        /** @var \PhpParser\Node\Scalar\String_ $pattern */
+        /** @var Node $pattern */
         $pattern = $node->args[0]->value;
         return '\A[0-9]+\z' === $this->extractRegex($pattern->value);
     }
