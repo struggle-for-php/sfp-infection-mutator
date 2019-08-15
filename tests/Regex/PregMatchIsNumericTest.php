@@ -17,7 +17,7 @@ final class PregMatchIsNumericTest extends AbstractMutatorTestCase
      * @dataProvider providesMutatorCases
      * @throws Exception
      */
-    public function test_mutator(string $input, ?string $output = null) : void
+    public function testMutator(string $input, ?string $output = null) : void
     {
         $this->doTest($input, $output);
     }
