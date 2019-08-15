@@ -42,7 +42,7 @@ final class PregMatchIsNumeric extends Mutator
             return false;
         }
 
-        /** @var Node $pattern */
+        /** @var Node\Scalar\String_ $pattern */
         $pattern = $node->args[0]->value;
         return '\A[0-9]+\z' === $this->extractRegex($pattern->value);
     }
