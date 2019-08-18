@@ -22,7 +22,7 @@ final class UnwrapStrReplaceTest extends AbstractMutatorTestCase
     /**
      * @dataProvider provideMutationCases
      */
-    public function test_mutator($input, $expected = null) : void
+    public function testMutator($input, $expected = null) : void
     {
         $this->doTest($input, $expected);
     }
