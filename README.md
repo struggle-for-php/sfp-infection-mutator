@@ -8,6 +8,8 @@ Mutators for infection `PHP Mutation Testing Framework`
 ### PregMatchIsNumeric
  - Replaces "preg_match('/\A[0-9]+\z/', '-0.12');" with "is_numeric('-0.12');"
 
+### UnwrapStrReplace
+
 ## Install 
 ```sh
 composer require --dev struggle-for-php/sfp-infection-mutator
@@ -18,7 +20,8 @@ composer require --dev struggle-for-php/sfp-infection-mutator
 {
     "mutators": {
         "@default": true,
-        "Sfp\\Infection\\Mutator\\Regex\\PregMatchIsNumeric": {}
+        "Sfp\\Infection\\Mutator\\Regex\\PregMatchIsNumeric": {},
+        "Sfp\\Infection\\Mutator\\Unwrap\\UnwrapStrReplace": {}
     }
 }
 ```
